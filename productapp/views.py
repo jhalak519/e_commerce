@@ -38,6 +38,17 @@ def addcart(request):
     return redirect('/showcart')
 
 
+def buynow(request):
+    if request.method == "POST":
+        user = request.user
+        product_id = request.POST['prod_id']
+        prod = Product.objects.get(id=product_id)
+        color = request.POST.get('color')
+        cart = Cart(user=user, product=prod) 
+        cart.save()
+    return redirect('/checkout/')
+
+
 def showcart(request):
 
     user = request.user
@@ -124,19 +135,13 @@ def men(request, data=None):
         menproduct = Product.objects.filter(catagory='m').filter(price__lt=500)
 
     elif data == 'above':
-        menproduct = Product.objects.filter(catagory='m').filter(price__gt=500)
+        menproduct = Product.objects.filter(catagory='m').filter(price__gt=500, price__lte=1000)
 
-    elif data == 'shirt':
-        menproduct = Product.objects.filter(catagory='m').filter(brand='s')
+    elif data == 'over1000':
+        menproduct = Product.objects.filter(catagory='m').filter(price__gt=1000)
 
-    elif data == 't-shirt':
-        menproduct = Product.objects.filter(catagory='m').filter(brand='t')
-
-    elif data == 'Jeans':
-        menproduct = Product.objects.filter(catagory='m').filter(brand='j')
-
-    elif data == 'Paint':
-        menproduct = Product.objects.filter(catagory='m').filter(brand='p')
+    else:
+        menproduct = Product.objects.filter(catagory='m')    
 
     context = {'menproduct': menproduct}
     return render(request, 'productapp/men.html', context)
@@ -154,19 +159,13 @@ def women(request, data=None):
 
     elif data == 'above':
         womenproduct = Product.objects.filter(
-            catagory='w').filter(price__gt=500)
+            catagory='w').filter(price__gt=500, price__lte=1000)
 
-    elif data == 'shirt':
-        womenproduct = Product.objects.filter(catagory='w').filter(brand='s')
-
-    elif data == 'toper':
-        womenproduct = Product.objects.filter(catagory='w').filter(brand='T')
-
-    elif data == 'Jeans':
-        womenproduct = Product.objects.filter(catagory='w').filter(brand='j')
-
-    # elif data == 'Paint':
-    #     womenproduct = Product.objects.filter(catagory='m').filter(brand='p')
+    elif data == 'over1000':
+        womenproduct = Product.objects.filter(catagory='w').filter(price__gt=1000)
+        
+    else:
+        womenproduct = Product.objects.filter(catagory='w')
 
     context = {'womenproduct': womenproduct}
     return render(request, 'productapp/women.html', context)
@@ -184,16 +183,14 @@ def kids(request, data=None):
 
     elif data == 'above':
         kidsproduct = Product.objects.filter(
-            catagory='k').filter(price__gt=500)
+            catagory='k').filter(price__gt=500, price__lte=1000)
+            
+    elif data == 'over1000':
+        kidsproduct = Product.objects.filter(catagory='k').filter(price__gt=1000)
 
-    elif data == 'shirt':
-        kidsproduct = Product.objects.filter(catagory='k').filter(brand='s')
+    else:
+        kidsproduct = Product.objects.filter(catagory='k')
 
-    elif data == 'toper':
-        kidsproduct = Product.objects.filter(catagory='k').filter(brand='T')
-
-    elif data == 'Jeans':
-        kidsproduct = Product.objects.filter(catagory='k').filter(brand='j')
     return render(
         request,
         'productapp/kids.html',

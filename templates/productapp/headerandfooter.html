@@ -27,7 +27,7 @@
       padding: 5px 5px;
 
       font-size: 20px;
-     
+
 
     }
 
@@ -61,7 +61,7 @@
       margin-right: 20px;
       font-size: 20px;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      display:inline-block;
+      display: inline-block;
     }
 
 
@@ -84,122 +84,126 @@
     /* -----------------footer----------------- */
 
     .footer {
-            background-color:rgb(31, 29, 29);
-            color: whitesmoke;
-            border: 2px solid black;
-            height: 400px;
-            margin-top:100px;
-        }
+      background-color: rgb(31, 29, 29);
+      color: whitesmoke;
+      border: 2px solid black;
+      height: 400px;
+      margin-top: 100px;
+    }
 
-        .container1 {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-        }
+    .container1 {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
 
-        .box {
+    .box {
 
-            /* border: 2px solid whitesmoke; */
-            height: 300px;
-            width: 200px;
-            margin-top: 100px;
-            margin-left: 50px;
-            text-align: center;
-        }
+      /* border: 2px solid whitesmoke; */
+      height: 300px;
+      width: 200px;
+      margin-top: 100px;
+      margin-left: 50px;
+      text-align: center;
+    }
 
-        @media (max-width:1386px) {
-            .container1 {
+    @media (max-width:1386px) {
+      .container1 {
 
-                display: grid;
+        display: grid;
 
-                /* background-color: red; */
-            }
+        /* background-color: red; */
+      }
 
-            .box{
-                /* margin-left: 150px; */
-                /* width: 80vw; */
-                grid-column-start: 1;
-                grid-column-end: 4;
-            }
+      .box {
+        /* margin-left: 150px; */
+        /* width: 80vw; */
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
 
-            .footer{
-                height: 100%;
-            }
+      .footer {
+        height: 100%;
+      }
 
-            #box1{
-                width: 250px;
-            }
-
-        
-        }
-
-      
-
-        #box1{
-            width: 400px;
-        }
-
-        .box ul li{
-            list-style: none;
-            margin-right: 50px;
-            margin-top: 10px;
-            
-        }
-
-        #box1 img{
-            width: 200px;
-            margin-top:30px;
-        }
-
-        #box1 h3{
-            font-size: 30px;
-        }
-
-        .box a{
-            text-decoration: none;
-            color: white;
-        }
+      #box1 {
+        width: 250px;
+      }
 
 
-        {% comment %} --------------------Dropdown-------------- {% endcomment %}
+    }
 
-        /* The container <div> - needed to position the dropdown content */
-          .dropdown {
-              position: relative;
-              display: inline-block;
-              text-align: center;
-          }
-  
-          /* Dropdown Content (Hidden by Default) */
-          .dropdown-content {
-              display: none;
-              position: absolute;
-              background-color: #f9f9f9;
-              /* min-width: 60px; */
-              box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-              z-index: 1;
-          }
-  
-          /* Links inside the dropdown */
-          .dropdown-content a {
-              color: black;
-              /* margin-right: 50px; */
-              padding: 12px 16px;
-              text-decoration: none;
-              display: block;
-          }
-  
-          /* Change color of dropdown links on hover */
-          .dropdown-content a:hover {
-              background-color: #fb5b46;
-              color: white;
-          }
-  
-          /* Show the dropdown menu on hover */
-          .dropdown:hover .dropdown-content {
-              display: block;
-          }
-  
 
+
+    #box1 {
+      width: 400px;
+    }
+
+    .box ul li {
+      list-style: none;
+      margin-right: 50px;
+      margin-top: 10px;
+
+    }
+
+    #box1 img {
+      width: 200px;
+      margin-top: 30px;
+    }
+
+    #box1 h3 {
+      font-size: 30px;
+    }
+
+    .box a {
+      text-decoration: none;
+      color: white;
+    }
+
+
+      {
+      % comment %
+    }
+
+    --------------------Dropdown-------------- {
+      % endcomment %
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      /* min-width: 60px; */
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      /* margin-right: 50px; */
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+      background-color: #fb5b46;
+      color: white;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
   </style>
 </head>
 
@@ -219,44 +223,52 @@
         <li><a href="/men/">Men</a></li>
         <li><a href="/women/">Women</a></li>
         <li><a href="/kids/">Kids</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a></li>
       </ul>
     </div>
 
     {% if user.is_authenticated %}
     <div class="user">
-      {% comment %} <p>Welcome {{request.user}}</p> <a href=""><i class="fa-regular fa-user font"></i></a> {% endcomment %}
-      <p>Welcome {{request.user}}</p> 
+
+      <p>Welcome {{request.user}}</p>
       <li class="dropdown">
         <a href=""><i class="fa-regular fa-user font"></i></a>
-        
+
         <div class="dropdown-content">
-            <a href="/auth/logout/">Logout</a>
-            <a href="/orderdetails/">Order</a>
-            
+          <!-- <div style="padding: 12px 16px; border-bottom: 1px solid #ddd; font-weight: bold; background-color: #f1f1f1;">
+              Name: {{user.username}}
+            </div> -->
+          <a href="#" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</a>
+          <a href="/auth/logout/">Logout</a>
+          <a href="/orderdetails/">Order</a>
+
         </div>
-    
-    </li>
+
+      </li>
       <a href="/showcart/"><i class="fa-solid fa-cart-shopping cart font"></i></a>
     </div>
     {% else %}
     <div class="user">
       <li class="dropdown">
         <a href=""><i class="fa-regular fa-user font"></i></a>
-        
+
         <div class="dropdown-content">
-            <a href="/auth/login/">Login</a>
-            <a href="/auth/Register/">Register</a>
-            
+          <a href="/auth/login/">Login</a>
+          <a href="/auth/Register/">Register</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+
         </div>
-    
-    </li>
+
+      </li>
       <a href="/auth/login/"><i class="fa-solid fa-cart-shopping cart font"></i></a>
     </div>
     {% endif %}
 
 
   </div>
-  
+
 
   <hr>
 
@@ -268,47 +280,141 @@
     {% block login %} {% endblock login %}
   </div>
 
+  <!-- Profile Modal -->
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="profileModalLabel">User Profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">User Details</h5>
+              <p class="card-text"><strong>Username:</strong> {{request.user.username}}</p>
+              <p class="card-text"><strong>Email:</strong> {{request.user.email}}</p>
+              <!-- Add more user fields here if available -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="aboutModalLabel">About Us</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This is an E-commerce site dedicated to providing the best products for men, women, and kids. We offer a wide
+          range of clothing and accessories.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="contactModalLabel">Contact Us</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get in Touch</h5>
+              <p class="card-text"><strong>Call:</strong> 1234567890</p>
+              <p class="card-text"><strong>Email:</strong> shop@email.com</p>
+              <p class="card-text"><strong>Instagram:</strong> shop.us</p>
+              <p class="card-text"><strong>LinkedIn:</strong> shopus.in</p>
+              <p class="card-text"><strong>Twitter:</strong> shopusnow</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ----------------------footer--------------------- -->
 
 
   <div class="footer">
     <div class="container1">
-        <div class="box" id="box1">
-            <h3>Download our App</h3>
-            <img src="{% static 'mainapp/downloadlogo.jpeg' %}" alt="">
-            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laborum deleniti architecto iure minima amet itaque adipisci hic temporibus magni, tempora eum. Quam nobis est nesciunt, possimus blanditiis facilis obcaecati asperiores nostrum odio autem molestias reiciendis, dicta odit voluptatum nulla ad dolorum delectus porro esse ratione tenetur rem. Quam, voluptas! -->
-        </div>
-        <div class="box" id="box2">
-            <h3>Useful link</h3>
-            <ul>
-                <a href=""><li>lorem1</li></a>
-                <a href=""><li>lorem2</li></a>
-                <a href=""><li>lorem3</li></a>
-                <a href=""><li>lorem4</li></a>
-            </ul>
-        </div>
-        <div class="box" id="box3">
-            <h3>follow us</h3>
-            <ul>
-                <a href=""><li>Instagram</li></a>
-                <a href=""><li>Facebook</li></a>
-                <a href=""><li>Twiter</li>
-                <a href=""><li>Whatsapp</li></a>
-            </ul>
-        </div>
-        <div class="box" id="box4">
-            <h3>Section</h3>
-            <ul>
-                <a href=""><li>Home</li></a>
-                <a href=""><li>Features</li></a>
-                <a href=""><li>Pricing</li></a>
-                <a href=""><li>Faq</li></a>
-            </ul>
-        </div>
+      <div class="box" id="box1">
+        <h3>Download our App</h3>
+        <img src="{% static 'mainapp/downloadlogo.jpeg' %}" alt="">
+        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laborum deleniti architecto iure minima amet itaque adipisci hic temporibus magni, tempora eum. Quam nobis est nesciunt, possimus blanditiis facilis obcaecati asperiores nostrum odio autem molestias reiciendis, dicta odit voluptatum nulla ad dolorum delectus porro esse ratione tenetur rem. Quam, voluptas! -->
+      </div>
+      <div class="box" id="box2">
+        <h3>Useful link</h3>
+        <ul>
+          <a href="">
+            <li>lorem1</li>
+          </a>
+          <a href="">
+            <li>lorem2</li>
+          </a>
+          <a href="">
+            <li>lorem3</li>
+          </a>
+          <a href="">
+            <li>lorem4</li>
+          </a>
+        </ul>
+      </div>
+      <div class="box" id="box3">
+        <h3>follow us</h3>
+        <ul>
+          <a href="">
+            <li>Instagram</li>
+          </a>
+          <a href="">
+            <li>Facebook</li>
+          </a>
+          <a href="">
+            <li>Twiter</li>
+            <a href="">
+              <li>Whatsapp</li>
+            </a>
+        </ul>
+      </div>
+      <div class="box" id="box4">
+        <h3>Section</h3>
+        <ul>
+          <a href="">
+            <li>Home</li>
+          </a>
+          <a href="">
+            <li>Features</li>
+          </a>
+          <a href="">
+            <li>Pricing</li>
+          </a>
+          <a href="">
+            <li>Faq</li>
+          </a>
+        </ul>
+      </div>
     </div>
 
 
-</div>
+  </div>
 
   <!-- <div class="container-fluid text-bg-dark container-fluid">
     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">

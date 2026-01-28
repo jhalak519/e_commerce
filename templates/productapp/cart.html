@@ -124,7 +124,7 @@
 
                 <div>
                     <form action="/checkout/", method="post">
-
+                        {% csrf_token %}
                         <button class="order">Confirm Order</button>
 
                     </form>
