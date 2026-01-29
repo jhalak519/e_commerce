@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'mainapp/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,7 +44,7 @@
 
         /* Links inside the dropdown */
         .dropdown-content a {
-            color: black;
+            color: #CC5500;
             /* margin-right: 50px; */
             padding: 12px 16px;
             text-decoration: none;
@@ -59,12 +61,19 @@
             display: block;
         }
 
+        nav ul li a {
+            color: #CC5500;
+            text-decoration: none;
+        }
+
+        .navbar i {
+            color: #CC5500;
+        }
+
         /* Change the background color of the dropdown button when the dropdown content is shown */
         /* .dropdown:hover .dropbtn {
             
         } */
-           
-       
     </style>
 </head>
 
@@ -79,15 +88,19 @@
                     <ul>
                         <li><a href="">Home</a></li>
                         <li><a href="">Products</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a></li>
                         <li class="dropdown">
                             <a href="" class="dropbtn">Account</a>
                             <div class="dropdown-content">
-                                <a href="">Register </a>
-                                <a href="">Login</a>
-                                
-
+                                {% if user.is_authenticated %}
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</a>
+                                <a href="/auth/logout/">Logout</a>
+                                <a href="/orderdetails/">Order</a>
+                                {% else %}
+                                <a href="/auth/Register/">Register </a>
+                                <a href="/auth/login/">Login</a>
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
@@ -440,6 +453,78 @@
         </div>
     </div>
 
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="aboutModalLabel">About Us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    This is an E-commerce site dedicated to providing the best products for men, women, and kids. We
+                    offer a wide range of clothing and accessories.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="contactModalLabel">Contact Us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Get in Touch</h5>
+                            <p class="card-text"><strong>Call:</strong> 1234567890</p>
+                            <p class="card-text"><strong>Email:</strong> shop@email.com</p>
+                            <p class="card-text"><strong>Instagram:</strong> shop.us</p>
+                            <p class="card-text"><strong>LinkedIn:</strong> shopus.in</p>
+                            <p class="card-text"><strong>Twitter:</strong> shopusnow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="profileModalLabel">User Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">User Details</h5>
+                            <p class="card-text"><strong>Username:</strong> {{request.user.username}}</p>
+                            <p class="card-text"><strong>Email:</strong> {{request.user.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 

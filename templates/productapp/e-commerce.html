@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'mainapp/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -43,7 +45,7 @@
 
         /* Links inside the dropdown */
         .dropdown-content a {
-            color: black;
+            color: #CC5500;
             /* margin-right: 50px; */
             padding: 12px 16px;
             text-decoration: none;
@@ -64,13 +66,13 @@
         /* .dropdown:hover .dropbtn {
             
         } */
-        
+
         .footer {
-            background-color:rgb(31, 29, 29);
+            background-color: rgb(31, 29, 29);
             color: whitesmoke;
             border: 2px solid black;
             height: 400px;
-            margin-top:200px;
+            margin-top: 200px;
         }
 
         .container1 {
@@ -96,68 +98,73 @@
                 /* background-color: red; */
             }
 
-            .box{
+            .box {
                 /* margin-left: 150px; */
                 /* width: 80vw; */
                 grid-column-start: 1;
                 grid-column-end: 4;
             }
 
-            .footer{
+            .footer {
                 height: 100%;
             }
 
-            #box1{
+            #box1 {
                 width: 250px;
             }
 
-        
+
         }
 
-      
 
-        #box1{
+
+        #box1 {
             width: 400px;
         }
 
-        .box ul li{
+        .box ul li {
             list-style: none;
             margin-right: 50px;
             margin-top: 10px;
-            
+
         }
 
-        #box1 img{
+        #box1 img {
             width: 200px;
-            margin-top:30px;
+            margin-top: 30px;
         }
 
-        #box1 h3{
+        #box1 h3 {
             font-size: 30px;
         }
 
-        .box a{
+        .box a {
             text-decoration: none;
             color: white;
         }
 
-        .fa-regular{
+        .fa-regular {}
 
-        }
-
-        #dropdown2{
+        #dropdown2 {
             font-size: 22px;
         }
 
-       
+        nav ul li a {
+            color: #CC5500;
+            text-decoration: none;
+        }
+
+        .navbar i.cart {
+            color: #CC5500;
+        }
     </style>
 </head>
 
 <body>
     {{allproduct}}
     {% for i in allproduct %}
-         {{i.title}}
-         {{i.price}}
+    {{i.title}}
+    {{i.price}}
 
     {% endfor %}
 
@@ -172,38 +179,43 @@
                         <li><a href="">Home</a></li>
                         <li class="dropdown">
                             <a href="">Products</a>
-                            
+
                             <div class="dropdown-content">
                                 <a href="/men/">Men</a>
                                 <a href="/women/">Women</a>
                                 <a href="/kids/">kids</a>
                             </div>
-                        
+
                         </li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a></li>
                         <li class="dropdown">
                             <a href="" class="dropbtn">Account</a>
                             <div class="dropdown-content">
+                                {% if user.is_authenticated %}
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</a>
+                                <a href="/auth/logout/">Logout</a>
+                                <a href="/orderdetails/">Order</a>
+                                {% else %}
                                 <a href="/auth/Register/">Register </a>
                                 <a href="/auth/login/">Login</a>
-                                
-
+                                {% endif %}
                             </div>
                         </li>
                     </ul>
                 </nav>
                 {% if user.is_authenticated %}
                 <li class="dropdown" id="dropdown1">
-                  <a href=""><i class="fa-regular fa-user cart"></i></a>
-                  
-                  <div class="dropdown-content" id="dropdown2">
-                      <a href="/auth/logout/">Logout</a>
-                      <a href="/orderdetails/">Order</a>
-                      
-                  </div>
-              
-              </li>
+                    <a href=""><i class="fa-regular fa-user cart"></i></a>
+
+                    <div class="dropdown-content" id="dropdown2">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</a>
+                        <a href="/auth/logout/">Logout</a>
+                        <a href="/orderdetails/">Order</a>
+
+                    </div>
+
+                </li>
                 <a href="/showcart/"><i class="fa-solid fa-cart-shopping cart"></i></a>
                 {% else %}
                 <a href="/auth/login/"><i class="fa-solid fa-cart-shopping cart"></i></a>
@@ -240,71 +252,73 @@
     <div class="categories">
         <div class="small-container">
             <div class="row">
-               
+
                 <div class="col-3">
                     <img src="https://img.freepik.com/free-psd/horizontal-banner-online-fashion-sale_23-2148585404.jpg?w=2000"
                         alt="" class="col3-img" height="300px">
                 </div>
                 <div class="col-3">
-                    <img src="https://i.ytimg.com/vi/II0cF9hFQ_g/maxresdefault.jpg" alt="" class="col3-img" height="300px";>
+                    <img src="https://i.ytimg.com/vi/II0cF9hFQ_g/maxresdefault.jpg" alt="" class="col3-img"
+                        height="300px" ;>
                 </div>
                 <div class="col-3">
-                    <img src="https://spingtree.com/wp-content/uploads/2018/07/banner-ecom.png" alt="solid=" col3-img" height="300px">
+                    <img src="https://spingtree.com/wp-content/uploads/2018/07/banner-ecom.png" alt="solid=" col3-img"
+                        height="300px">
                 </div>
             </div>
         </div>
     </div>
- 
+
 
 
 
 
     <!-- features product--------------- -->
-    
-        <div class="small-container">
-            <h2 class="title">Featured Products</h2>
-            <div class="row">
+
+    <div class="small-container">
+        <h2 class="title">Featured Products</h2>
+        <div class="row">
             {% for i in featuredproduct %}
             <div class="col-4">
                 <a href="/productview/{{i.id}}">
-                <img src="/media/{{i.images}}" alt="" class="col4-img">
-                <h4>{{i.title}}</h4>
-                <p>${{i.price}}.00</p>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-              </a>
+                    <img src="/media/{{i.images}}" alt="" class="col4-img">
+                    <h4>{{i.title}}</h4>
+                    <p>${{i.price}}.00</p>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </a>
             </div>
             {% endfor %}
-         
+
         </div>
-    
+
         <h2 class="title">Latest Product</h2>
         <div class="row">
             {% for j in latestproduct %}
             <div class="col-4">
                 <a href="/productview/{{j.id}}">
-                <img src="/media/{{j.images}}" alt="" class="col4-img">
-                <h4>{{j.title}}</h4>
-                <p>${{j.price}}.00</p>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-            </a>
+                    <img src="/media/{{j.images}}" alt="" class="col4-img">
+                    <h4>{{j.title}}</h4>
+                    <p>${{j.price}}.00</p>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </a>
             </div>
             {% endfor %}
-           
-            </div>
+
         </div>
+    </div>
 
     </div>
-</a>
+    </a>
 
 
     <!-- ---------------offers--------------- -->
@@ -343,7 +357,8 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1568316674077-d72ee56de61c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmVzc2lvbmFsJTIwbWFufGVufDB8fDB8fA%3D%3D&w=1000&q=80"  alt="">
+                    <img src="https://images.unsplash.com/photo-1568316674077-d72ee56de61c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmVzc2lvbmFsJTIwbWFufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                        alt="">
                     <h3>Mohit Sharma</h3>
                 </div>
 
@@ -357,7 +372,8 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <img src="https://userscontent2.emaze.com/images/2f25a968-add0-4ebc-8623-450ba9c12179/d281440e-06ff-48b3-8bc8-b64c2d8a5e29.png" alt="">
+                    <img src="https://userscontent2.emaze.com/images/2f25a968-add0-4ebc-8623-450ba9c12179/d281440e-06ff-48b3-8bc8-b64c2d8a5e29.png"
+                        alt="">
                     <h3>Mohit Sharma</h3>
                 </div>
 
@@ -371,7 +387,8 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmVzc2lvbmFsJTIwbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                    <img src="https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmVzc2lvbmFsJTIwbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                        alt="">
                     <h3>Mohit Sharma</h3>
                 </div>
             </div>
@@ -384,7 +401,7 @@
     <div class="brands">
         <div class="small-container">
             <div class="row">
-                
+
                 <div class="col-5">
                     <img src="{% static 'mainapp/naaptol-logo.jpg' %}" alt="">
                 </div>
@@ -458,35 +475,130 @@
             <div class="box" id="box2">
                 <h3>Useful link</h3>
                 <ul>
-                    <a href=""><li>lorem1</li></a>
-                    <a href=""><li>lorem2</li></a>
-                    <a href=""><li>lorem3</li></a>
-                    <a href=""><li>lorem4</li></a>
+                    <a href="">
+                        <li>lorem1</li>
+                    </a>
+                    <a href="">
+                        <li>lorem2</li>
+                    </a>
+                    <a href="">
+                        <li>lorem3</li>
+                    </a>
+                    <a href="">
+                        <li>lorem4</li>
+                    </a>
                 </ul>
             </div>
             <div class="box" id="box3">
                 <h3>follow us</h3>
                 <ul>
-                    <a href=""><li>Instagram</li></a>
-                    <a href=""><li>Facebook</li></a>
-                    <a href=""><li>Twiter</li>
-                    <a href=""><li>Whatsapp</li></a>
+                    <a href="">
+                        <li>Instagram</li>
+                    </a>
+                    <a href="">
+                        <li>Facebook</li>
+                    </a>
+                    <a href="">
+                        <li>Twiter</li>
+                        <a href="">
+                            <li>Whatsapp</li>
+                        </a>
                 </ul>
             </div>
             <div class="box" id="box4">
                 <h3>Section</h3>
                 <ul>
-                    <a href=""><li>Home</li></a>
-                    <a href=""><li>Features</li></a>
-                    <a href=""><li>Pricing</li></a>
-                    <a href=""><li>Faq</li></a>
+                    <a href="">
+                        <li>Home</li>
+                    </a>
+                    <a href="">
+                        <li>Features</li>
+                    </a>
+                    <a href="">
+                        <li>Pricing</li>
+                    </a>
+                    <a href="">
+                        <li>Faq</li>
+                    </a>
                 </ul>
             </div>
         </div>
-    
-    
+
+
     </div>
 
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="aboutModalLabel">About Us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    This is an E-commerce site dedicated to providing the best products for men, women, and kids. We
+                    offer a wide range of clothing and accessories.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="contactModalLabel">Contact Us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Get in Touch</h5>
+                            <p class="card-text"><strong>Call:</strong> 1234567890</p>
+                            <p class="card-text"><strong>Email:</strong> shop@email.com</p>
+                            <p class="card-text"><strong>Instagram:</strong> shop.us</p>
+                            <p class="card-text"><strong>LinkedIn:</strong> shopus.in</p>
+                            <p class="card-text"><strong>Twitter:</strong> shopusnow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="profileModalLabel">User Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">User Details</h5>
+                            <p class="card-text"><strong>Username:</strong> {{request.user.username}}</p>
+                            <p class="card-text"><strong>Email:</strong> {{request.user.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
