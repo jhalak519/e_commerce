@@ -2,10 +2,6 @@
 
 This is a Django-based e-commerce application designed to provide a complete online shopping experience. Users can register, log in, browse products by category, filter by price, add items to their cart, and place orders. The admin panel allows for easy management of products and orders.
 
-# Demo
-
-https://www.linkedin.com/posts/jhalaksharma519_reflecting-on-an-old-project-from-college-activity-7422708705147768833-an92?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE2X5CIBIR3tXBB0s-IHoDAfIk4-jRvQQzA
-
 ## Features
 
 ### User Authentication
